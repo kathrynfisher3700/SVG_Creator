@@ -4,23 +4,30 @@ inquirer
   .prompt([
     {
       type: 'input',
-      message: 'Enter 3 letters',
+      message: 'Enter letters displayed. 3max',
       name: 'letters',
       maxLength: 3
     },
     {
-      type: 'password',
-      message: 'What is your password?',
-      name: 'password',
+      type: 'input',
+      message: 'Letter color',
+      name: 'colorL',
     },
     {
-      type: 'password',
-      message: 'Re-enter password to confirm:',
-      name: 'confirm',
+    type: 'checkbox',
+     message: 'Choose a shape.',
+     name: 'shape',
+    choices: ['circle', 'triangle', 'square',]
     },
+    {
+      type: 'input',
+      message: 'Shape color',
+      name: 'colorS',
+    },
+    
   ])
-  .then((response) =>
-    response.confirm === response.password
-      ? console.log('Success!')
-      : console.log('You forgot your password already?!')
-  );
+  .then((response) => {
+  const {letters, colorL, shape, colorS } = response
+
+  
+  });
