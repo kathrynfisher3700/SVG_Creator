@@ -1,6 +1,6 @@
 const fs = require('fs')
 const inquirer = require('inquirer')
-const shapes = require('./lib/shapes.js');
+const Circle = require('./lib/shapes.js');
 
 inquirer
   .prompt([
@@ -29,9 +29,9 @@ inquirer
   ])
   .then((response) => {
     const { letters, colorL, shape, colorS } = response
-    console.log(response);
-    // const shapeN = new Circle (letters, colorL, shape, colorS);
-    // shapeN.create();
+
+    const shapeN = new Circle (letters, colorL, shape, colorS);
+    shapeN.create();
 
   });
 
