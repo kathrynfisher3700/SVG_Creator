@@ -1,6 +1,6 @@
 const fs = require('fs')
 const inquirer = require('inquirer')
-const Circle = require('./lib/shapes.js');
+
 
 inquirer
   .prompt([
@@ -30,8 +30,9 @@ inquirer
   .then((response) => {
     const { letters, colorL, shape, colorS } = response
 
-    const shapeN = new Circle (letters, colorL, shape, colorS);
-    shapeN.create();
+    fs.writeFile('logo.svg',
+    
+    )
 
   });
 
