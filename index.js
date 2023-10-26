@@ -1,7 +1,11 @@
-const {writeFile} = require('fs/promises')
+const { writeFile } = require('fs/promises')
 const inquirer = require('inquirer')
-const {Circle, Triangle, Square} = require('./lib/shapes')
-const logo = require('./lib/logo')
+// const {Circle, Triangle, Square} = require('./lib/shapes')
+const Circle = require('./lib/shapes')
+const Logo = require('./lib/logo')
+
+
+
 
 inquirer
   .prompt([
@@ -28,11 +32,12 @@ inquirer
       name: "colorS",
     },
   ])
-  .then((response) => {
-    const { letters, colorL, shape, colorS } = response
-    
-    fs.writeFile('logo.svg', shape.setColor(colorS),logo.rendor(), logo.setLetters(letters,colorL), logo.setShape(shape) 
-    ), (err) => err ? console.error(err) : console.log('Thank You!'))
+  .then(({letters, colorL, shape, colorS}) => {
+    let circle = new Circle();
+    circle.setColor(colorS)
+   logo.setShape(shape)
+  logo.setLetters(letters, colorL)
+  return writeFile('logo.svg', logo.rendor())
   })
 
 
