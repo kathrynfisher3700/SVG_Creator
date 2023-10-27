@@ -1,8 +1,8 @@
-const { writeFile } = require('fs/promises')
+const {writeFile} = require('fs/promises')
 const inquirer = require('inquirer')
-// const {Circle, Triangle, Square} = require('./lib/shapes')
-const Circle = require('./lib/shapes')
+const {Circle, Triangle, Square,} = require('./lib/shapes')
 const Logo = require('./lib/logo')
+const { log } = require('console')
 
 
 
@@ -21,7 +21,7 @@ inquirer
       name: "colorL",
     },
     {
-      type: "checkbox",
+      type: "list",
       message: "Choose a shape.",
       name: "shape",
       choices: ["circle", "triangle", "square"],
@@ -32,14 +32,28 @@ inquirer
       name: "colorS",
     },
   ])
-  .then(({letters, colorL, shape, colorS}) => {
-    let circle = new Circle();
-    circle.setColor(colorS)
-   logo.setShape(shape)
-  logo.setLetters(letters, colorL)
-  return writeFile('logo.svg', logo.rendor())
+  .then((response) => {
+    const {letters, colorL, shape, colorS} = response
+    let logo = new Logo()
+    logo.setLetters(letters, colorL)
+
+    console.log(colorS)
+    
+    let newShape;
+    switch(shape) {
+      case 'circle':
+        newShape = new Circle()
+        break;
+      case 'triangle':
+        newShape = new Triangle()
+        break
+      case 'square':
+        newShape = new Square()
+    }
+    newShape.setColor(colorS)
+    logo.setShape(newShape)
+    return writeFile('logo.svg', logo.render())
   })
-
-
-
-
+  
+  
+  
