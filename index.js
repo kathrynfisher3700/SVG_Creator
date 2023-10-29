@@ -38,7 +38,7 @@ inquirer
     logo.setLetters(letters, colorL)
 
     console.log(colorS)
-    
+
     let newShape;
     switch(shape) {
       case 'circle':
